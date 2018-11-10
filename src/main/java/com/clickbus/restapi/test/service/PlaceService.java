@@ -15,4 +15,6 @@ public interface PlaceService {
 	Optional<Place> findBySlugIgnoreCase(String slug);
 	
 	Place save(Place p);
+	
+	List<Object[]> findAllPlaces();
 }

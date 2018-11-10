@@ -36,4 +36,9 @@ public class PlaceServiceImpl implements PlaceService{
 		return repository.save(p);
 	}
 
+	@Override
+	public List<Object[]> findAllPlaces() {
+		return repository.findAllPlaces();
+	}
+
 }

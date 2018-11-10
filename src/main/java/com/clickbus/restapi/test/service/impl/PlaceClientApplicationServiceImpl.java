@@ -1,5 +1,7 @@
 package com.clickbus.restapi.test.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,11 @@ public class PlaceClientApplicationServiceImpl implements PlaceClientApplication
 	@Override
 	public PlaceClientApplication save(PlaceClientApplication c) {
 		return repository.save(c);
+	}
+
+	@Override
+	public List<PlaceClientApplication> findByPlaceId(Long id) {
+		return repository.findByPlaceIdIdOrderByClientIdId(id);
 	}
 
 }
