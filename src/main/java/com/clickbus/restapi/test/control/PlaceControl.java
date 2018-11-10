@@ -1,7 +1,5 @@
 package com.clickbus.restapi.test.control;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
