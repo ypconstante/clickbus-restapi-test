@@ -13,29 +13,29 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.clickbus.restapi.test.entity.Country;
-import com.clickbus.restapi.test.repository.CountryRepository;
+import com.clickbus.restapi.test.entity.State;
+import com.clickbus.restapi.test.repository.StateRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ActiveProfiles("test")
-public class CountryServiceTest {
+public class StateServiceTest {
 
 	@MockBean
-	private CountryRepository repository;
+	private StateRepository repository;
 
 	@Autowired
-	private CountryService service;
+	private StateService service;
 
 
 	@Before
 	public void setUp() throws Exception {
-		BDDMockito.given(this.repository.save(Mockito.any(Country.class))).willReturn(new Country());
+		BDDMockito.given(this.repository.save(Mockito.any(State.class))).willReturn(new State());
 	}
 	
 	@Test
 	public void testSave() {
-		Country c = this.service.save(new Country());
+		State c = this.service.save(new State());
 
 		assertNotNull(c);
 	}
