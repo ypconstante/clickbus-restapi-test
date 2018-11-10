@@ -1,5 +1,7 @@
 package com.clickbus.restapi.test.service.impl;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,5 +19,12 @@ public class ClientApplicationServiceImpl implements ClientApplicationService {
 	public ClientApplication save(ClientApplication c) {
 		return repository.save(c);
 	}
+
+	@Override
+	public Optional<ClientApplication> findById(Long id) {
+		return repository.findById(id);
+	}
+	
+	
 
 }

@@ -1,5 +1,6 @@
 package com.clickbus.restapi.test.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,18 @@ public class PlaceServiceImpl implements PlaceService{
 	}
 
 	@Override
-	public Optional<Place> findBySlugLikeIgnoraCase(String slug) {
-		return repository.findBySlugLikeIgnoreCase(slug);
+	public List<Place> findBySlugLikeIgnoreCase(String slug) {
+	return repository.findBySlugLikeIgnoreCase("%"+slug+"%");
+	}
+
+	@Override
+	public Optional<Place> findBySlugIgnoreCase(String slug) {
+		return repository.findBySlugIgnoreCase(slug);
+	}
+
+	@Override
+	public Place save(Place p) {
+		return repository.save(p);
 	}
 
 }
