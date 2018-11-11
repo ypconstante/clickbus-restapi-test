@@ -20,7 +20,7 @@ import com.clickbus.restapi.test.entity.PlaceClientApplication;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ActiveProfiles("test")
-public class PlaceClientApplicationTest {
+public class PlaceClientApplicationRepositoryTest {
 
 	@Autowired
 	private PlaceClientApplicationRepository repository;
