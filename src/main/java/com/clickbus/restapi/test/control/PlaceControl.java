@@ -1,7 +1,6 @@
 package com.clickbus.restapi.test.control;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -88,7 +87,7 @@ public class PlaceControl {
 			List<PlaceClientApplication> placeList = placeClientAppService.findByPlaceId(Long.parseLong(l[0].toString()));
 			List<String> clientsId = new ArrayList<>();
 			placeList.forEach(f -> clientsId.add(f.getClientId().getId().toString()));
-			m.put("clientId", clientsId);
+			m.put("clientIds", clientsId);
 			map.add(m);
 		});
 

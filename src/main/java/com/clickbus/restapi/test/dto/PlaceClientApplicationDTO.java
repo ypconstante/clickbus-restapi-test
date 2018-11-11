@@ -7,8 +7,8 @@ import lombok.Data;
 @Data
 public class PlaceClientApplicationDTO {
 	private Long id;
-	@NotNull
+	@NotNull(message = "Place cannot be null")
 	private Long placeId;
-	@NotNull
+	@NotNull(message = "Client cannot be null")
 	private Long clientId;
 }
