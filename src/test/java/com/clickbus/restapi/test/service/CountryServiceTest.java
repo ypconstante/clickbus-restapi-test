@@ -1,6 +1,9 @@
 package com.clickbus.restapi.test.service;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -31,13 +34,19 @@ public class CountryServiceTest {
 	@Before
 	public void setUp() throws Exception {
 		BDDMockito.given(this.repository.save(Mockito.any(Country.class))).willReturn(new Country());
+		BDDMockito.given(this.repository.findById(Mockito.anyLong())).willReturn(Optional.of(new Country()));
 	}
 	
 	@Test
 	public void testSave() {
 		Country c = this.service.save(new Country());
-
+		
 		assertNotNull(c);
 	}
 
+	@Test
+	public void testFindById() {
+		Optional<Country> c = this.service.findById(1L);
+		assertEquals(c.isPresent(), true);
+	}
 }

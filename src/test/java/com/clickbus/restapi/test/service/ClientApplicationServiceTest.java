@@ -1,6 +1,9 @@
 package com.clickbus.restapi.test.service;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -31,13 +34,20 @@ public class ClientApplicationServiceTest {
 	@Before
 	public void setUp() throws Exception {
 		BDDMockito.given(this.repository.save(Mockito.any(ClientApplication.class))).willReturn(new ClientApplication());
+		BDDMockito.given(this.repository.findById(Mockito.anyLong())).willReturn(Optional.of(new ClientApplication()));
 	}
 	
 	@Test
 	public void testSave() {
 		ClientApplication c = this.service.save(new ClientApplication());
-
+		
 		assertNotNull(c);
+	}
+	
+	@Test
+	public void testFindById() {
+		Optional<ClientApplication> c = this.service.findById(1L);
+		assertEquals(c.isPresent(), true);
 	}
 
 }
