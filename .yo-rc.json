@@ -1,0 +1,37 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.clickbus.service"
+    },
+    "jhipsterVersion": "5.5.0",
+    "applicationType": "monolith",
+    "baseName": "clickbus",
+    "packageName": "com.clickbus.service",
+    "packageFolder": "com/clickbus/service",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": "elasticsearch",
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ODBiMmUzOWNlZTEzZjM1N2NhN2QwOWQ3NmY0MzYzZGZjNTYyMTFmZDg4NzMyNGQwYTAzNGRjNTU1OTQ4ZjFkMTJkNzBhZWM2YTJhYWMzY2VjOTIxNzM5ZGIxNDY0ZmJmMWUxN2M2NjUwMTM5YzFmMjk0ZWU0ZjMwZDQxYWU3ZDU=",
+    "clientFramework": "angularX",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": [
+      "gatling",
+      "cucumber",
+      "protractor"
+    ],
+    "jhiPrefix": "jhi",
+    "otherModules": [],
+    "enableTranslation": false
+  }
+}

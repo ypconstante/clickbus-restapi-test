@@ -1,0 +1,5 @@
+id;name;slug;terminal_name;address;city_id;created_by;last_modified_by
+1;Place 01;PL01;TerminalPlace01;Av Presidente Vargas, 001;1;system;system
+2;Place 02;PL02;TerminalPlace02;Av Docas de Souza, 001;1;system;system
+3;Place 03;PL03;TerminalPlace03;Av Docas de Souza, 001;2;system;system
+4;Place 04;PL04;TerminalPlace04;Av Docas de Souza, 001;2;system;system

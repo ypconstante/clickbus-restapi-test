@@ -1,0 +1,5 @@
+
+${AnsiColor.BLUE}:: Click${AnsiColor.YELLOW}Bus   
+${AnsiColor.BRIGHT_BLUE}:: Running Spring Boot ${spring-boot.version} ::
+${AnsiColor.BRIGHT_BLUE}:: 🤓  thiago.soares.jr@gmail.com ::
+${AnsiColor.DEFAULT}
