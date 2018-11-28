@@ -5,7 +5,8 @@ Esta é uma aplicação de exercício.
 
 Caso queira executar a aplicação antes de fazer o seu próprio build, utilize os pacotes disponíveis em:
 
- -[Producao](https://bitbucket.org/thiagosoaresjr/clickbusrestapi/downloads/clickbus.war)
+ -[Desenvolvimento](https://bitbucket.org/thiagosoaresjr/clickbusrestapi/downloads/clickbus.war)
+ 
  -[Producao](https://bitbucket.org/thiagosoaresjr/clickbusrestapi/downloads/clickbus-prod-swagger.war)
 
 Para executar a aplicação, apenas execute o seguinte comando:
