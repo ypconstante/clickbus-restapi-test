@@ -1,8 +1,8 @@
 # Clickbus Backend Test
 
-## Para começar
+## Lets Code, but first...
 * Faça um Fork desse projeto (Não clone ele, por favor)
-* Ao terminar, abra um PR para que possamos avaliar ;)
+* Ao terminar, abra um PR para que possamos avaliar e nos envie (***backend-devs@clickbus.com***) ;)
 
 ## Proposta
 Considerando a seguinte estrutura de dados:
