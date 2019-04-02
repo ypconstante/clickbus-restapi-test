@@ -28,12 +28,12 @@ Criar uma API Rest onde seja possível buscar as seguintes informações:
 }
 ```
 
-*OBS: Na tabela de Place, a coluna ​slug​​ deve ter uma constraint ​UNIQUE​​ representada na Entity.*
+*OBS: Na tabela de Place, a coluna **slug** deve ter uma constraint **UNIQUE** representada na Entity.*
 
 ### Para isso, 
 * Crie as Entities que representem a estrutura de dados desenhada acima, com os relacionamentos representados por anotações:
     * Preferencialmente utilize as anotações do ​Lombok​​ dentro das Entities;
-    * Utilize um padrão de ​Lazy​​ ​Load​​ nos relacionamentos entre as Entities.
+    * Utilize um padrão de **LazyLoad** nos relacionamentos entre as Entities.
 * Criar um RestController (EndPoint) onde seja possível listar todos os Places existentes
 no banco de dados (sempre com os ClientIds relacionados), com a saída de acordo com o JSON demonstrado:
     * Procure seguir o padrão REST de URis.
