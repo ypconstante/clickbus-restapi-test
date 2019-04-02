@@ -13,15 +13,18 @@ Criar uma API Rest onde seja possível buscar as seguintes informações:
 ```json
 {
 "id": 1,
-"name": " Nome do Place", “slug”: “Slug do Place” "city": {
-"name": "Nome da Cidade" },
+"name": " Nome do Place",
+"slug": "slug-do-place",
+"city": {
+  "name": "Nome da Cidade",
+},
 "state": {
-"name": "Nome do Estado"
-}, "country": {
-"name": "Nome do Pais" },
-"clientIds": [ "1",
-"2",
-"3" ]
+  "name": "Nome do Estado"
+},
+"country": {
+  "name": "Nome do Pais",
+},
+"clientIds": [ "1","2","3" ]
 }
 ```
 
