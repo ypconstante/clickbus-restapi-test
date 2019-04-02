@@ -1,4 +1,4 @@
-package com.clickbus.restapi.test;
+package com.clickbus.restapi;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,10 +7,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class RestapiApplicationTests {
-
+public class ApplicationTest {
     @Test
     public void contextLoads() {
     }
-
 }
