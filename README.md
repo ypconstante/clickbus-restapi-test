@@ -7,7 +7,7 @@
 ## Proposta
 Considerando a seguinte estrutura de dados:
 
-![](/Users/danilopereira/Desktop/Screen Shot 2019-04-02 at 10.46.05.png)
+![](tables.png)
 
 Criar uma API Rest onde seja possível buscar as seguintes informações:
 ```json
