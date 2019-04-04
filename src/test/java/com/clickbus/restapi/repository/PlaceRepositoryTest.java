@@ -8,9 +8,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchThrowable;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -27,6 +29,15 @@ public class PlaceRepositoryTest {
     public void save() {
         Place item = this.placeRepository.save(getNewPlace());
         assertThat(item.getId()).isGreaterThan(1);
+    }
+
+    @Test
+    public void saveDuplicatedSlug() {
+        this.placeRepository.save(getNewPlace());
+        Throwable throwable = catchThrowable(() -> this.placeRepository.save(getNewPlace()));
+        assertThat(throwable)
+            .isInstanceOf(DataIntegrityViolationException.class)
+            .hasMessageContaining("PLACE_SLUG_AK");
     }
 
     @Test
