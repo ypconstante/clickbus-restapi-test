@@ -60,6 +60,18 @@ public class PlaceRepositoryTest extends AppRepositoryTestBootstrapper {
             .isEqualTo(LocalDateTime.of(2013, 8, 2, 14, 28, 43));
     }
 
+    @Test
+    public void findAllBySlugContaining() {
+        Place place123 = this.placeRepository.save(getNewPlace().setSlug("some-place-123"));
+        Place place124 = this.placeRepository.save(getNewPlace().setSlug("some-place-124"));
+        assertThat(this.placeRepository.findAllBySlugContaining("some-place-12"))
+            .containsExactlyInAnyOrder(place123, place124);
+        assertThat(this.placeRepository.findAllBySlugContaining("some-place-123"))
+            .containsExactlyInAnyOrder(place123);
+        assertThat(this.placeRepository.findAllBySlugContaining("-"))
+            .hasSize(3);
+    }
+
     private Place getNewPlace() {
         City city = this.cityRepository.findById(1L)
             .orElseThrow(IllegalStateException::new);
