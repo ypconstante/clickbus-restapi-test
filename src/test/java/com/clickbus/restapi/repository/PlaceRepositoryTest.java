@@ -51,7 +51,7 @@ public class PlaceRepositoryTest extends AppRepositoryTestBootstrapper {
         assertThat(item.getCity()).isNotNull();
         assertThat(item.getCity().getName()).isEqualTo("Floripa");
         assertThat(item.getName()).isEqualTo("Terminal Rita Maria");
-        assertThat(item.getTerminalName()).isEqualTo("A1");
+        assertThat(item.getTerminalName()).isEqualTo("A01");
         assertThat(item.getSlug()).isEqualTo("terminal-rita-maria");
         assertThat(item.getAddress()).isEqualTo("Rua do Terminal");
         assertThat(item.getCreatedAt())
@@ -69,7 +69,7 @@ public class PlaceRepositoryTest extends AppRepositoryTestBootstrapper {
         assertThat(this.placeRepository.findAllBySlugContaining("some-place-123"))
             .containsExactlyInAnyOrder(place123);
         assertThat(this.placeRepository.findAllBySlugContaining("-"))
-            .hasSize(3);
+            .hasSize(18);
     }
 
     private Place getNewPlace() {
