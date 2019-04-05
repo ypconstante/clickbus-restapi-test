@@ -3,15 +3,12 @@ package com.clickbus.restapi.repository;
 import java.time.LocalDateTime;
 
 import com.clickbus.restapi.entity.ClientApplication;
+import com.clickbus.restapi.test.AppRepositoryTestBootstrapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
-@Transactional
-public class ClientApplicationRepositoryTest {
+public class ClientApplicationRepositoryTest extends AppRepositoryTestBootstrapper {
     private static final LocalDateTime BASE_TIME = LocalDateTime.now();
 
     @Autowired
