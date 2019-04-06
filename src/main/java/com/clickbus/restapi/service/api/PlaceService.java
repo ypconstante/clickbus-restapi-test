@@ -6,4 +6,6 @@ import com.clickbus.restapi.entity.Place;
 
 public interface PlaceService {
     Collection<Place> findAll();
+
+    Collection<Place> findAllBySlugContaining(String slug);
 }

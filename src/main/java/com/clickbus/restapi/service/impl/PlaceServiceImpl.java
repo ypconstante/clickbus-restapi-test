@@ -19,4 +19,9 @@ public class PlaceServiceImpl implements PlaceService {
     public Collection<Place> findAll() {
         return this.placeRepository.findAll();
     }
+
+    @Override
+    public Collection<Place> findAllBySlugContaining(String slug) {
+        return this.placeRepository.findAllBySlugContaining(slug);
+    }
 }

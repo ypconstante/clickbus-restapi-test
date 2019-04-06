@@ -7,8 +7,10 @@ import com.clickbus.restapi.service.api.PlaceService;
 import com.clickbus.restapi.web.convert.PlaceConvert;
 import com.clickbus.restapi.web.dto.PlaceDto;
 import org.springframework.http.MediaType;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -26,8 +28,10 @@ public class PlaceController {
     }
 
     @GetMapping
-    public Collection<PlaceDto> findAll() {
-        Collection<Place> items = this.placeService.findAll();
+    public Collection<PlaceDto> findAll(@RequestParam(name = "slug", required = false) String slug) {
+        Collection<Place> items = StringUtils.isEmpty(slug)
+            ? this.placeService.findAll()
+            : this.placeService.findAllBySlugContaining(slug);
         return this.placeConvert.toDto(items);
     }
 }
