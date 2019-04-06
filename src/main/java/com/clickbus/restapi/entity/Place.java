@@ -2,6 +2,7 @@ package com.clickbus.restapi.entity;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.Collections;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,4 +35,11 @@ public class Place {
 
     @ManyToMany(mappedBy = "places")
     private Collection<ClientApplication> clientApplications;
+
+    public Collection<ClientApplication> getClientApplications() {
+        if (this.clientApplications == null) {
+            this.clientApplications = Collections.emptyList();
+        }
+        return this.clientApplications;
+    }
 }

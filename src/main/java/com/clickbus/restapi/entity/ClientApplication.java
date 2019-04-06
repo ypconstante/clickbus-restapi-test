@@ -2,6 +2,7 @@ package com.clickbus.restapi.entity;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.Collections;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,4 +33,11 @@ public class ClientApplication {
         joinColumns = @JoinColumn(name = "client_id"),
         inverseJoinColumns = @JoinColumn(name = "place_id"))
     private Collection<Place> places;
+
+    public Collection<Place> getPlaces() {
+        if (this.places == null) {
+            this.places = Collections.emptyList();
+        }
+        return this.places;
+    }
 }
