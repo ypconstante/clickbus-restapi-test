@@ -1,14 +1,17 @@
 package com.clickbus.restapi.web.controller;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import com.clickbus.restapi.entity.Place;
 import com.clickbus.restapi.service.api.PlaceService;
 import com.clickbus.restapi.web.convert.PlaceConvert;
 import com.clickbus.restapi.web.dto.PlaceDto;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,5 +36,12 @@ public class PlaceController {
             ? this.placeService.findAll()
             : this.placeService.findAllBySlugContaining(slug);
         return this.placeConvert.toDto(items);
+    }
+
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<PlaceDto> findById(@PathVariable(name = "id") Long id) {
+        Optional<PlaceDto> item = this.placeService.findById(id)
+            .map(this.placeConvert::toDto);
+        return ResponseEntity.of(item);
     }
 }

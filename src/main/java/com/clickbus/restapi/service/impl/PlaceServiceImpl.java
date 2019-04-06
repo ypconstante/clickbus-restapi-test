@@ -1,6 +1,7 @@
 package com.clickbus.restapi.service.impl;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import com.clickbus.restapi.entity.Place;
 import com.clickbus.restapi.repository.PlaceRepository;
@@ -23,5 +24,10 @@ public class PlaceServiceImpl implements PlaceService {
     @Override
     public Collection<Place> findAllBySlugContaining(String slug) {
         return this.placeRepository.findAllBySlugContaining(slug);
+    }
+
+    @Override
+    public Optional<Place> findById(Long id) {
+        return this.placeRepository.findById(id);
     }
 }
