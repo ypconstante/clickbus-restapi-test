@@ -1,8 +1,11 @@
 package com.clickbus.restapi.repository;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 
 import com.clickbus.restapi.entity.ClientApplication;
+import com.clickbus.restapi.entity.Place;
 import com.clickbus.restapi.test.AppRepositoryTestBootstrapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,8 @@ public class ClientApplicationRepositoryTest extends AppRepositoryTestBootstrapp
 
     @Autowired
     private ClientApplicationRepository clientApplicationRepository;
+    @Autowired
+    private PlaceRepository placeRepository;
 
     @Test
     public void save() {
@@ -27,8 +32,11 @@ public class ClientApplicationRepositoryTest extends AppRepositoryTestBootstrapp
             .save(getNewClientApplication()).getId();
         ClientApplication item = this.clientApplicationRepository.findById(id)
             .orElseThrow(IllegalStateException::new);
-        item.setId(null);
-        assertThat(item).isEqualTo(getNewClientApplication());
+
+        ClientApplication expected = getNewClientApplication().setId(id);
+        assertThat(item).isEqualTo(expected);
+        assertThat(item.getPlaces())
+            .containsExactlyInAnyOrderElementsOf(expected.getPlaces());
     }
 
     @Test
@@ -42,13 +50,21 @@ public class ClientApplicationRepositoryTest extends AppRepositoryTestBootstrapp
             .isEqualTo(LocalDateTime.of(2013, 10, 20, 10, 11, 12));
         assertThat(item.getUpdatedAt())
             .isEqualTo(LocalDateTime.of(2019, 1, 5, 17, 59, 59));
+        assertThat(item.getPlaces()).extracting(Place::getId)
+            .hasSize(4)
+            .containsExactlyInAnyOrder(1L, 2L, 4L, 5L);
     }
 
     private ClientApplication getNewClientApplication() {
+        List<Place> places = this.placeRepository.findAllById(Arrays.asList(
+            4L, 5L, 6L, 7L
+        ));
+
         return new ClientApplication()
             .setName("Client Name")
             .setPublicName("Public")
             .setCreatedAt(BASE_TIME)
-            .setUpdatedAt(BASE_TIME.plusSeconds(1));
+            .setUpdatedAt(BASE_TIME.plusSeconds(1))
+            .setPlaces(places);
     }
 }

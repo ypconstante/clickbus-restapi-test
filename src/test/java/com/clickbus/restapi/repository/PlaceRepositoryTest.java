@@ -1,8 +1,11 @@
 package com.clickbus.restapi.repository;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 
 import com.clickbus.restapi.entity.City;
+import com.clickbus.restapi.entity.ClientApplication;
 import com.clickbus.restapi.entity.Place;
 import com.clickbus.restapi.test.AppRepositoryTestBootstrapper;
 import org.junit.jupiter.api.Test;
@@ -18,6 +21,8 @@ public class PlaceRepositoryTest extends AppRepositoryTestBootstrapper {
     private CityRepository cityRepository;
     @Autowired
     private PlaceRepository placeRepository;
+    @Autowired
+    private ClientApplicationRepository clientApplicationRepository;
 
     @Test
     public void save() {
@@ -39,8 +44,11 @@ public class PlaceRepositoryTest extends AppRepositoryTestBootstrapper {
         Long id = this.placeRepository.save(getNewPlace()).getId();
         Place item = this.placeRepository.findById(id)
             .orElseThrow(IllegalStateException::new);
-        item.setId(null);
-        assertThat(item).isEqualTo(getNewPlace());
+
+        Place expected = getNewPlace().setId(id);
+        assertThat(item).isEqualTo(expected);
+        assertThat(item.getClientApplications())
+            .containsExactlyInAnyOrderElementsOf(expected.getClientApplications());
     }
 
     @Test
@@ -58,6 +66,9 @@ public class PlaceRepositoryTest extends AppRepositoryTestBootstrapper {
             .isEqualTo(LocalDateTime.of(2013, 8, 2, 14, 28, 42));
         assertThat(item.getUpdatedAt())
             .isEqualTo(LocalDateTime.of(2013, 8, 2, 14, 28, 43));
+        assertThat(item.getClientApplications()).extracting(ClientApplication::getId)
+            .hasSize(3)
+            .containsExactlyInAnyOrder(1L, 2L, 4L);
     }
 
     @Test
@@ -75,6 +86,9 @@ public class PlaceRepositoryTest extends AppRepositoryTestBootstrapper {
     private Place getNewPlace() {
         City city = this.cityRepository.findById(1L)
             .orElseThrow(IllegalStateException::new);
+        List<ClientApplication> clientApplications = this.clientApplicationRepository.findAllById(Arrays.asList(
+            1L, 2L, 4L
+        ));
         return new Place()
             .setCity(city)
             .setName("Terminal Central")
@@ -82,6 +96,7 @@ public class PlaceRepositoryTest extends AppRepositoryTestBootstrapper {
             .setSlug("terminal-central")
             .setAddress("Rua 123")
             .setCreatedAt(BASE_TIME)
-            .setUpdatedAt(BASE_TIME.plusSeconds(1));
+            .setUpdatedAt(BASE_TIME.plusSeconds(1))
+            .setClientApplications(clientApplications);
     }
 }

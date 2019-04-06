@@ -42,3 +42,13 @@ values (1, 'Terminal Rita Maria', 'A01', 'terminal-rita-maria', 'Rua do Terminal
        (7, 'Terminal Penafiel 14', 'A14', 'terminal-14', 'Rua 14', current_timestamp(), current_timestamp()),
        (8, 'Terminal Santo Tirso 15', 'A15', 'terminal-15', 'Rua 15', current_timestamp(), current_timestamp()),
        (8, 'Terminal Santo Tirso 16', 'A16', 'terminal-16', 'Rua 16', current_timestamp(), current_timestamp());
+
+insert into PLACE_CLIENT_APPLICATION(PLACE_ID, CLIENT_ID)
+values (1, 1),
+       (1, 2),
+       (1, 4),
+       (2, 1),
+       (3, 2),
+       (3, 5),
+       (4, 1),
+       (5, 1);
