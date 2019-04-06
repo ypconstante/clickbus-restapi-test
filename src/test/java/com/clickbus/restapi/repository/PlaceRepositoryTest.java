@@ -1,12 +1,13 @@
 package com.clickbus.restapi.repository;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.clickbus.restapi.entity.City;
 import com.clickbus.restapi.entity.ClientApplication;
 import com.clickbus.restapi.entity.Place;
+import com.clickbus.restapi.entity.testdata.PlaceTestData;
 import com.clickbus.restapi.test.AppRepositoryTestBootstrapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
 public class PlaceRepositoryTest extends AppRepositoryTestBootstrapper {
-    private static final LocalDateTime BASE_TIME = LocalDateTime.now();
-
     @Autowired
     private CityRepository cityRepository;
     @Autowired
@@ -84,19 +83,17 @@ public class PlaceRepositoryTest extends AppRepositoryTestBootstrapper {
     }
 
     private Place getNewPlace() {
+        Place place = PlaceTestData.get();
+
         City city = this.cityRepository.findById(1L)
             .orElseThrow(IllegalStateException::new);
-        List<ClientApplication> clientApplications = this.clientApplicationRepository.findAllById(Arrays.asList(
-            1L, 2L, 4L
-        ));
-        return new Place()
+        List<ClientApplication> clientApplications = this.clientApplicationRepository.findAllById(
+            place.getClientApplications().stream()
+                .map(ClientApplication::getId)
+                .collect(Collectors.toList())
+        );
+        return place
             .setCity(city)
-            .setName("Terminal Central")
-            .setTerminalName("Plataforma A")
-            .setSlug("terminal-central")
-            .setAddress("Rua 123")
-            .setCreatedAt(BASE_TIME)
-            .setUpdatedAt(BASE_TIME.plusSeconds(1))
             .setClientApplications(clientApplications);
     }
 }

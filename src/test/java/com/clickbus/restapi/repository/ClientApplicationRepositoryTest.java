@@ -1,19 +1,18 @@
 package com.clickbus.restapi.repository;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.clickbus.restapi.entity.ClientApplication;
 import com.clickbus.restapi.entity.Place;
+import com.clickbus.restapi.entity.testdata.ClientApplicationTestData;
 import com.clickbus.restapi.test.AppRepositoryTestBootstrapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ClientApplicationRepositoryTest extends AppRepositoryTestBootstrapper {
-    private static final LocalDateTime BASE_TIME = LocalDateTime.now();
-
     @Autowired
     private ClientApplicationRepository clientApplicationRepository;
     @Autowired
@@ -56,15 +55,15 @@ public class ClientApplicationRepositoryTest extends AppRepositoryTestBootstrapp
     }
 
     private ClientApplication getNewClientApplication() {
-        List<Place> places = this.placeRepository.findAllById(Arrays.asList(
-            4L, 5L, 6L, 7L
-        ));
+        ClientApplication clientApplication = ClientApplicationTestData.get();
 
-        return new ClientApplication()
-            .setName("Client Name")
-            .setPublicName("Public")
-            .setCreatedAt(BASE_TIME)
-            .setUpdatedAt(BASE_TIME.plusSeconds(1))
+        List<Place> places = this.placeRepository.findAllById(
+            clientApplication.getPlaces().stream()
+                .map(Place::getId)
+                .collect(Collectors.toList())
+        );
+
+        return clientApplication
             .setPlaces(places);
     }
 }

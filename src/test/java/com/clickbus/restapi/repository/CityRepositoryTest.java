@@ -4,14 +4,13 @@ import java.time.LocalDateTime;
 
 import com.clickbus.restapi.entity.City;
 import com.clickbus.restapi.entity.State;
+import com.clickbus.restapi.entity.testdata.CityTestData;
 import com.clickbus.restapi.test.AppRepositoryTestBootstrapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CityRepositoryTest extends AppRepositoryTestBootstrapper {
-    private static final LocalDateTime BASE_TIME = LocalDateTime.now();
-
     @Autowired
     private StateRepository stateRepository;
     @Autowired
@@ -49,10 +48,7 @@ public class CityRepositoryTest extends AppRepositoryTestBootstrapper {
     private City getNewCity() {
         State state = this.stateRepository.findById(1L)
             .orElseThrow(IllegalStateException::new);
-        return new City()
-            .setState(state)
-            .setName("Joinville")
-            .setCreatedAt(BASE_TIME)
-            .setUpdatedAt(BASE_TIME.plusSeconds(1));
+        return CityTestData.get()
+            .setState(state);
     }
 }
