@@ -7,6 +7,9 @@ import com.clickbus.restapi.entity.Place;
 import com.clickbus.restapi.service.api.PlaceService;
 import com.clickbus.restapi.web.convert.PlaceConvert;
 import com.clickbus.restapi.web.dto.PlaceDto;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
     value = "/places",
     produces = MediaType.APPLICATION_JSON_UTF8_VALUE
 )
+@Api(tags = "places", description = "API to find places")
 public class PlaceController {
     private final PlaceService placeService;
     private final PlaceConvert placeConvert;
@@ -31,7 +35,11 @@ public class PlaceController {
     }
 
     @GetMapping
-    public Collection<PlaceDto> findAll(@RequestParam(name = "slug", required = false) String slug) {
+    @ApiOperation(value = "List places")
+    public Collection<PlaceDto> findAll(
+        @ApiParam(value = "Filter by 'slug' containing value")
+        @RequestParam(name = "slug", required = false)
+            String slug) {
         Collection<Place> items = StringUtils.isEmpty(slug)
             ? this.placeService.findAll()
             : this.placeService.findAllBySlugContaining(slug);
@@ -39,6 +47,7 @@ public class PlaceController {
     }
 
     @GetMapping(path = "/{id}")
+    @ApiOperation(value = "Get place by id")
     public ResponseEntity<PlaceDto> findById(@PathVariable(name = "id") Long id) {
         Optional<PlaceDto> item = this.placeService.findById(id)
             .map(this.placeConvert::toDto);
