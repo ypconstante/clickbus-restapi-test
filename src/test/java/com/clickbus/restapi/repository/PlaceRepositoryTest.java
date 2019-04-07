@@ -15,7 +15,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
-public class PlaceRepositoryTest extends AppRepositoryTestBootstrapper {
+class PlaceRepositoryTest extends AppRepositoryTestBootstrapper {
     @Autowired
     private CityRepository cityRepository;
     @Autowired
@@ -24,13 +24,13 @@ public class PlaceRepositoryTest extends AppRepositoryTestBootstrapper {
     private ClientApplicationRepository clientApplicationRepository;
 
     @Test
-    public void save() {
+    void save() {
         Place item = this.placeRepository.save(getNewPlace());
         assertThat(item.getId()).isGreaterThan(1);
     }
 
     @Test
-    public void saveDuplicatedSlug() {
+    void saveDuplicatedSlug() {
         this.placeRepository.save(getNewPlace());
         Throwable throwable = catchThrowable(() -> this.placeRepository.save(getNewPlace()));
         assertThat(throwable)
@@ -39,7 +39,7 @@ public class PlaceRepositoryTest extends AppRepositoryTestBootstrapper {
     }
 
     @Test
-    public void saveAndFind() {
+    void saveAndFind() {
         Long id = this.placeRepository.save(getNewPlace()).getId();
         Place item = this.placeRepository.findById(id)
             .orElseThrow(IllegalStateException::new);
@@ -51,7 +51,7 @@ public class PlaceRepositoryTest extends AppRepositoryTestBootstrapper {
     }
 
     @Test
-    public void findPreviousData() {
+    void findPreviousData() {
         Place item = this.placeRepository.findById(1L)
             .orElseThrow(IllegalStateException::new);
         assertThat(item.getId()).isNotNull();
@@ -71,7 +71,7 @@ public class PlaceRepositoryTest extends AppRepositoryTestBootstrapper {
     }
 
     @Test
-    public void findAllBySlugContaining() {
+    void findAllBySlugContaining() {
         Place place123 = this.placeRepository.save(getNewPlace().setSlug("some-place-123"));
         Place place124 = this.placeRepository.save(getNewPlace().setSlug("some-place-124"));
         assertThat(this.placeRepository.findAllBySlugContaining("some-place-12"))

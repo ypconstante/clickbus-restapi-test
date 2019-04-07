@@ -11,18 +11,18 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class PlaceConvertTest {
+class PlaceConvertTest {
     private PlaceConvert placeConvert;
 
     @BeforeEach
-    public void beforeEach() {
+    void beforeEach() {
         this.placeConvert = new PlaceConvert();
     }
 
     @Nested
-    public class ToDto {
+    class ToDto {
         @Test
-        public void item() {
+        void item() {
             Place input = PlaceTestData.get().setId(123L);
             PlaceDto output = PlaceConvertTest.this.placeConvert.toDto(input);
             assertThat(output).isEqualTo(
@@ -44,7 +44,7 @@ public class PlaceConvertTest {
         }
 
         @Test
-        public void collection() {
+        void collection() {
             Collection<Place> input = Arrays.asList(
                 new Place().setName("place 1"),
                 new Place().setName("place 2")
@@ -57,13 +57,13 @@ public class PlaceConvertTest {
         }
 
         @Test
-        public void emptyItem() {
+        void emptyItem() {
             PlaceDto output = PlaceConvertTest.this.placeConvert.toDto(new Place());
             assertThat(output).isNotNull(); // TODO
         }
 
         @Test
-        public void nullItem() {
+        void nullItem() {
             PlaceDto output = PlaceConvertTest.this.placeConvert.toDto((Place) null);
             assertThat(output).isNull();
         }

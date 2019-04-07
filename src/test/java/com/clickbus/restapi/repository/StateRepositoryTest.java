@@ -10,20 +10,20 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class StateRepositoryTest extends AppRepositoryTestBootstrapper {
+class StateRepositoryTest extends AppRepositoryTestBootstrapper {
     @Autowired
     private CountryRepository countryRepository;
     @Autowired
     private StateRepository stateRepository;
 
     @Test
-    public void save() {
+    void save() {
         State item = this.stateRepository.save(getNewState());
         assertThat(item.getId()).isGreaterThan(1);
     }
 
     @Test
-    public void saveAndFind() {
+    void saveAndFind() {
         Long id = this.stateRepository.save(getNewState()).getId();
         State item = this.stateRepository.findById(id)
             .orElseThrow(IllegalStateException::new);
@@ -32,7 +32,7 @@ public class StateRepositoryTest extends AppRepositoryTestBootstrapper {
     }
 
     @Test
-    public void findPreviousData() {
+    void findPreviousData() {
         State item = this.stateRepository.findById(1L)
             .orElseThrow(IllegalStateException::new);
         assertThat(item.getId()).isNotNull();

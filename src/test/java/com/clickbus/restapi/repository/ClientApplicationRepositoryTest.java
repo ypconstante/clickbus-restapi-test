@@ -12,21 +12,21 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ClientApplicationRepositoryTest extends AppRepositoryTestBootstrapper {
+class ClientApplicationRepositoryTest extends AppRepositoryTestBootstrapper {
     @Autowired
     private ClientApplicationRepository clientApplicationRepository;
     @Autowired
     private PlaceRepository placeRepository;
 
     @Test
-    public void save() {
+    void save() {
         ClientApplication item = this.clientApplicationRepository
             .save(getNewClientApplication());
         assertThat(item.getId()).isGreaterThan(1);
     }
 
     @Test
-    public void saveAndFind() {
+    void saveAndFind() {
         Long id = this.clientApplicationRepository
             .save(getNewClientApplication()).getId();
         ClientApplication item = this.clientApplicationRepository.findById(id)
@@ -39,7 +39,7 @@ public class ClientApplicationRepositoryTest extends AppRepositoryTestBootstrapp
     }
 
     @Test
-    public void findPreviousData() {
+    void findPreviousData() {
         ClientApplication item = this.clientApplicationRepository.findById(1L)
             .orElseThrow(IllegalStateException::new);
         assertThat(item.getId()).isNotNull();
