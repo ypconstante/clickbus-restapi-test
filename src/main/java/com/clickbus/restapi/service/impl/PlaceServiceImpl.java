@@ -7,6 +7,7 @@ import com.clickbus.restapi.entity.Place;
 import com.clickbus.restapi.repository.PlaceRepository;
 import com.clickbus.restapi.service.api.PlaceService;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 @Service
 public class PlaceServiceImpl implements PlaceService {
@@ -23,7 +24,10 @@ public class PlaceServiceImpl implements PlaceService {
 
     @Override
     public Collection<Place> findAllBySlugContaining(String slug) {
-        return this.placeRepository.findAllBySlugContaining(slug);
+        if (StringUtils.isEmpty(slug)) {
+            return this.findAll();
+        }
+        return this.placeRepository.findAllBySlugContaining(slug.toLowerCase());
     }
 
     @Override

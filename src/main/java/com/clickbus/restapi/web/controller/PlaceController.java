@@ -12,7 +12,6 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,9 +39,7 @@ public class PlaceController {
         @ApiParam(value = "Filter by 'slug' containing value")
         @RequestParam(name = "slug", required = false)
             String slug) {
-        Collection<Place> items = StringUtils.isEmpty(slug)
-            ? this.placeService.findAll()
-            : this.placeService.findAllBySlugContaining(slug);
+        Collection<Place> items = this.placeService.findAllBySlugContaining(slug);
         return this.placeConvert.toDto(items);
     }
 
