@@ -39,8 +39,8 @@ public class ClientApplication {
     private LocalDateTime updatedAt;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-        name = "place_client_application",
-        joinColumns = @JoinColumn(name = "client_id"),
-        inverseJoinColumns = @JoinColumn(name = "place_id"))
+        name = "placeClientApplication",
+        joinColumns = @JoinColumn(name = "clientId"),
+        inverseJoinColumns = @JoinColumn(name = "placeId"))
     private Collection<Place> places = Collections.emptyList();
 }

@@ -20,7 +20,7 @@ public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @JoinColumn(name = "state_id")
+    @JoinColumn(name = "stateId")
     @ManyToOne(fetch = FetchType.LAZY)
     private State state;
     @Column

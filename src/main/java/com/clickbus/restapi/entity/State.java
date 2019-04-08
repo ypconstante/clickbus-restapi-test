@@ -20,7 +20,7 @@ public class State {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @JoinColumn(name = "country_id")
+    @JoinColumn(name = "countryId")
     @ManyToOne(fetch = FetchType.LAZY)
     private Country country;
     @Column
