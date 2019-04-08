@@ -1,5 +1,7 @@
 # Clickbus Backend Test
 
+[![CircleCI](https://circleci.com/gh/ypconstante/clickbus-restapi-test.svg?style=svg)](https://circleci.com/gh/ypconstante/clickbus-restapi-test) [![codecov](https://codecov.io/gh/ypconstante/clickbus-restapi-test/branch/master/graph/badge.svg)](https://codecov.io/gh/ypconstante/clickbus-restapi-test)
+
 ## Lets Code, but first...
 * Faça um Fork desse projeto (Não clone ele, por favor)
 * Ao terminar, abra um PR para que possamos avaliar e nos envie (***backend-devs@clickbus.com***) ;)
