@@ -34,12 +34,5 @@ public class Place {
     private LocalDateTime updatedAt;
 
     @ManyToMany(mappedBy = "places")
-    private Collection<ClientApplication> clientApplications;
-
-    public Collection<ClientApplication> getClientApplications() {
-        if (this.clientApplications == null) {
-            this.clientApplications = Collections.emptyList();
-        }
-        return this.clientApplications;
-    }
+    private Collection<ClientApplication> clientApplications = Collections.emptyList();
 }

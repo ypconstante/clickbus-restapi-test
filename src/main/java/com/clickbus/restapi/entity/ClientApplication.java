@@ -32,12 +32,5 @@ public class ClientApplication {
         name = "place_client_application",
         joinColumns = @JoinColumn(name = "client_id"),
         inverseJoinColumns = @JoinColumn(name = "place_id"))
-    private Collection<Place> places;
-
-    public Collection<Place> getPlaces() {
-        if (this.places == null) {
-            this.places = Collections.emptyList();
-        }
-        return this.places;
-    }
+    private Collection<Place> places = Collections.emptyList();
 }
