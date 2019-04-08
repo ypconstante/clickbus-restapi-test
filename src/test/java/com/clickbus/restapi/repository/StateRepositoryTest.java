@@ -24,11 +24,21 @@ class StateRepositoryTest extends AppRepositoryTestBootstrapper {
 
     @Test
     void saveAndFind() {
+        LocalDateTime timeBeforeSave = LocalDateTime.now();
         Long id = this.stateRepository.save(getNewState()).getId();
+
         State item = this.stateRepository.findById(id)
             .orElseThrow(IllegalStateException::new);
-        item.setId(null);
-        assertThat(item).isEqualTo(getNewState());
+
+        State expected = getNewState()
+            .setId(id)
+            .setCreatedAt(item.getCreatedAt())
+            .setUpdatedAt(item.getUpdatedAt());
+
+        assertThat(item).isEqualTo(expected);
+        assertThat(item.getCreatedAt())
+            .isAfterOrEqualTo(timeBeforeSave)
+            .isBeforeOrEqualTo(item.getUpdatedAt());
     }
 
     @Test

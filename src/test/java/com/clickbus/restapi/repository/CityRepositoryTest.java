@@ -24,11 +24,21 @@ class CityRepositoryTest extends AppRepositoryTestBootstrapper {
 
     @Test
     void saveAndFind() {
+        LocalDateTime timeBeforeSave = LocalDateTime.now();
         Long id = this.cityRepository.save(getNewCity()).getId();
+
         City item = this.cityRepository.findById(id)
             .orElseThrow(IllegalStateException::new);
-        item.setId(null);
-        assertThat(item).isEqualTo(getNewCity());
+
+        City expected = getNewCity()
+            .setId(id)
+            .setCreatedAt(item.getCreatedAt())
+            .setUpdatedAt(item.getUpdatedAt());
+
+        assertThat(item).isEqualTo(expected);
+        assertThat(item.getCreatedAt())
+            .isAfterOrEqualTo(timeBeforeSave)
+            .isBeforeOrEqualTo(item.getUpdatedAt());
     }
 
     @Test

@@ -22,12 +22,22 @@ class CountryRepositoryTest extends AppRepositoryTestBootstrapper {
 
     @Test
     void saveAndFind() {
+        LocalDateTime timeBeforeSave = LocalDateTime.now();
         Long id = this.countryRepository
             .save(CountryTestData.get()).getId();
+
         Country item = this.countryRepository.findById(id)
             .orElseThrow(IllegalStateException::new);
-        item.setId(null);
-        assertThat(item).isEqualTo(CountryTestData.get());
+
+        Country expected = CountryTestData.get()
+            .setId(id)
+            .setCreatedAt(item.getCreatedAt())
+            .setUpdatedAt(item.getUpdatedAt());
+
+        assertThat(item).isEqualTo(expected);
+        assertThat(item.getCreatedAt())
+            .isAfterOrEqualTo(timeBeforeSave)
+            .isBeforeOrEqualTo(item.getUpdatedAt());
     }
 
     @Test

@@ -40,12 +40,21 @@ class PlaceRepositoryTest extends AppRepositoryTestBootstrapper {
 
     @Test
     void saveAndFind() {
+        LocalDateTime timeBeforeSave = LocalDateTime.now();
         Long id = this.placeRepository.save(getNewPlace()).getId();
+
         Place item = this.placeRepository.findById(id)
             .orElseThrow(IllegalStateException::new);
 
-        Place expected = getNewPlace().setId(id);
+        Place expected = getNewPlace()
+            .setId(id)
+            .setCreatedAt(item.getCreatedAt())
+            .setUpdatedAt(item.getUpdatedAt());
+
         assertThat(item).isEqualTo(expected);
+        assertThat(item.getCreatedAt())
+            .isAfterOrEqualTo(timeBeforeSave)
+            .isBeforeOrEqualTo(item.getUpdatedAt());
         assertThat(item.getClientApplications())
             .containsExactlyInAnyOrderElementsOf(expected.getClientApplications());
     }

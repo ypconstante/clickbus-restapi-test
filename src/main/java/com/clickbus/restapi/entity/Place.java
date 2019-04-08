@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Data
 @Entity
@@ -36,8 +38,10 @@ public class Place {
     @Column
     private String address;
     @Column
+    @CreationTimestamp
     private LocalDateTime createdAt;
     @Column
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
 
     @ManyToMany(mappedBy = "places")

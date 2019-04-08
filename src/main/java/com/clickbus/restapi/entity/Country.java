@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Data
 @Entity
@@ -18,7 +20,9 @@ public class Country {
     @Column
     private String name;
     @Column
+    @CreationTimestamp
     private LocalDateTime createdAt;
     @Column
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
 }

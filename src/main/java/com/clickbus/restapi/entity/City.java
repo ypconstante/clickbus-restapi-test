@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Data
 @Entity
@@ -23,7 +25,9 @@ public class City {
     @Column
     private String name;
     @Column
+    @CreationTimestamp
     private LocalDateTime createdAt;
     @Column
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
 }

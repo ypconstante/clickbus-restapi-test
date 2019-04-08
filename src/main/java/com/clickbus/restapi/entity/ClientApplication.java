@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Data()
 @Entity
@@ -29,8 +31,10 @@ public class ClientApplication {
     @Column
     private String publicName;
     @Column
+    @CreationTimestamp
     private LocalDateTime createdAt;
     @Column
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
     @ManyToMany
     @JoinTable(

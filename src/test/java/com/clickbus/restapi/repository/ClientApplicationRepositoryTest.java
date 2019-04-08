@@ -27,13 +27,22 @@ class ClientApplicationRepositoryTest extends AppRepositoryTestBootstrapper {
 
     @Test
     void saveAndFind() {
+        LocalDateTime timeBeforeSave = LocalDateTime.now();
         Long id = this.clientApplicationRepository
             .save(getNewClientApplication()).getId();
+
         ClientApplication item = this.clientApplicationRepository.findById(id)
             .orElseThrow(IllegalStateException::new);
 
-        ClientApplication expected = getNewClientApplication().setId(id);
+        ClientApplication expected = getNewClientApplication()
+            .setId(id)
+            .setCreatedAt(item.getCreatedAt())
+            .setUpdatedAt(item.getUpdatedAt());
+
         assertThat(item).isEqualTo(expected);
+        assertThat(item.getCreatedAt())
+            .isAfterOrEqualTo(timeBeforeSave)
+            .isBeforeOrEqualTo(item.getUpdatedAt());
         assertThat(item.getPlaces())
             .containsExactlyInAnyOrderElementsOf(expected.getPlaces());
     }
