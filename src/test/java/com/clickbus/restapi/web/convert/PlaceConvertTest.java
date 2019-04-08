@@ -59,7 +59,7 @@ class PlaceConvertTest {
         @Test
         void emptyItem() {
             PlaceDto output = PlaceConvertTest.this.placeConvert.toDto(new Place());
-            assertThat(output).isNotNull(); // TODO
+            assertThat(output).isEqualTo(new PlaceDto());
         }
 
         @Test
