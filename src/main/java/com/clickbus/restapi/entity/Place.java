@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ public class Place {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @JoinColumn(name = "city_id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private City city;
     @Column
     private String name;
@@ -44,6 +45,6 @@ public class Place {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    @ManyToMany(mappedBy = "places")
+    @ManyToMany(mappedBy = "places", fetch = FetchType.LAZY)
     private Collection<ClientApplication> clientApplications = Collections.emptyList();
 }

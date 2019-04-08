@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,7 +37,7 @@ public class ClientApplication {
     @Column
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "place_client_application",
         joinColumns = @JoinColumn(name = "client_id"),
