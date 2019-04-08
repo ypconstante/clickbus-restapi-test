@@ -1,6 +1,7 @@
 package com.clickbus.restapi.entity;
 
 import java.time.LocalDateTime;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +20,10 @@ public class City {
     @JoinColumn(name = "state_id")
     @ManyToOne
     private State state;
+    @Column
     private String name;
+    @Column
     private LocalDateTime createdAt;
+    @Column
     private LocalDateTime updatedAt;
 }

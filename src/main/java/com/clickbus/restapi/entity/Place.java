@@ -3,6 +3,7 @@ package com.clickbus.restapi.entity;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Collections;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,11 +27,17 @@ public class Place {
     @JoinColumn(name = "city_id")
     @ManyToOne
     private City city;
+    @Column
     private String name;
+    @Column
     private String terminalName;
+    @Column
     private String slug;
+    @Column
     private String address;
+    @Column
     private LocalDateTime createdAt;
+    @Column
     private LocalDateTime updatedAt;
 
     @ManyToMany(mappedBy = "places")
