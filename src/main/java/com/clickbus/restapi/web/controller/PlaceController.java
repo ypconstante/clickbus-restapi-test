@@ -3,7 +3,6 @@ package com.clickbus.restapi.web.controller;
 import java.util.Collection;
 import java.util.Optional;
 
-import com.clickbus.restapi.entity.Place;
 import com.clickbus.restapi.service.api.PlaceService;
 import com.clickbus.restapi.web.convert.PlaceConvert;
 import com.clickbus.restapi.web.dto.PlaceDto;
@@ -39,7 +38,7 @@ public class PlaceController {
         @ApiParam(value = "Filter by 'slug' containing value")
         @RequestParam(name = "slug", required = false)
             String slug) {
-        Collection<Place> items = this.placeService.findAllBySlugContaining(slug);
+        var items = this.placeService.findAllBySlugContaining(slug);
         return this.placeConvert.toDto(items);
     }
 

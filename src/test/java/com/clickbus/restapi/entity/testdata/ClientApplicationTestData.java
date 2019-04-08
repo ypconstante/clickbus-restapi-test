@@ -1,7 +1,7 @@
 package com.clickbus.restapi.entity.testdata;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
+import java.util.List;
 
 import com.clickbus.restapi.entity.ClientApplication;
 import com.clickbus.restapi.entity.Place;
@@ -15,7 +15,7 @@ public class ClientApplicationTestData {
             .setPublicName("Public")
             .setCreatedAt(BASE_TIME)
             .setUpdatedAt(BASE_TIME.plusSeconds(1))
-            .setPlaces(Arrays.asList(
+            .setPlaces(List.of(
                 new Place().setId(4L),
                 new Place().setId(5L),
                 new Place().setId(6L),

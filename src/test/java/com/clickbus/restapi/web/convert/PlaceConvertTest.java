@@ -1,7 +1,7 @@
 package com.clickbus.restapi.web.convert;
 
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import com.clickbus.restapi.entity.Place;
 import com.clickbus.restapi.entity.testdata.PlaceTestData;
@@ -39,13 +39,13 @@ class PlaceConvertTest {
                     .setCountry(
                         new PlaceDto.Country().setName("México")
                     )
-                    .setClientIds(Arrays.asList(1L, 2L, 4L))
+                    .setClientIds(List.of(1L, 2L, 4L))
             );
         }
 
         @Test
         void collection() {
-            Collection<Place> input = Arrays.asList(
+            Collection<Place> input = List.of(
                 new Place().setName("place 1"),
                 new Place().setName("place 2")
             );
