@@ -9,6 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootTest
 @Transactional
 @AutoConfigureMockMvc
-@ActiveProfiles({ "test" })
+@ActiveProfiles({ "development", "test" })
 abstract class AppTestBootstrapper extends SpringBootTestContextBootstrapper {
 }
