@@ -3,9 +3,11 @@ package com.clickbus.restapi.web.dto;
 import java.util.Collection;
 import java.util.Collections;
 
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
 @Data
+@ApiModel("Place")
 public class PlaceDto {
     private Long id;
     private String name;
