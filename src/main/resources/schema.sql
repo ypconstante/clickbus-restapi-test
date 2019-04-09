@@ -1,60 +1,60 @@
-create table CLIENT_APPLICATION
+create table client_application
 (
-    ID          integer not null auto_increment unique,
-    NAME        varchar(100),
-    PUBLIC_NAME varchar(255),
-    CREATED_AT  datetime,
-    UPDATED_AT  datetime,
-    primary key (ID)
+    id          integer not null auto_increment unique,
+    name        varchar(100),
+    public_name varchar(255),
+    created_at  datetime,
+    updated_at  datetime,
+    primary key (id)
 );
 
-create table COUNTRY
+create table country
 (
-    ID         integer not null auto_increment unique,
-    NAME       varchar(100),
-    CREATED_AT datetime,
-    UPDATED_AT datetime,
-    primary key (ID)
+    id         integer not null auto_increment unique,
+    name       varchar(100),
+    created_at datetime,
+    updated_at datetime,
+    primary key (id)
 );
 
-create table STATE
+create table state
 (
-    ID         integer not null auto_increment unique,
-    COUNTRY_ID integer references COUNTRY (ID),
-    NAME       varchar(100),
-    CREATED_AT datetime,
-    UPDATED_AT datetime,
-    primary key (ID)
+    id         integer not null auto_increment unique,
+    country_id integer references country (id),
+    name       varchar(100),
+    created_at datetime,
+    updated_at datetime,
+    primary key (id)
 );
 
-create table CITY
+create table city
 (
-    ID         integer not null auto_increment unique,
-    STATE_ID   integer references STATE (ID),
-    NAME       varchar(100),
-    CREATED_AT datetime,
-    UPDATED_AT datetime,
-    primary key (ID)
+    id         integer not null auto_increment unique,
+    state_id   integer references state (id),
+    name       varchar(100),
+    created_at datetime,
+    updated_at datetime,
+    primary key (id)
 );
 
 
-create table PLACE
+create table place
 (
-    ID            integer not null auto_increment unique,
-    CITY_ID       integer references CITY (ID),
-    NAME          varchar(255),
-    TERMINAL_NAME varchar(255),
-    SLUG          varchar(255),
-    ADDRESS       varchar(255),
-    CREATED_AT    datetime,
-    UPDATED_AT    datetime,
-    primary key (ID),
-    constraint PLACE_SLUG_AK unique (SLUG)
+    id            integer not null auto_increment unique,
+    city_id       integer references city (id),
+    name          varchar(255),
+    terminal_name varchar(255),
+    slug          varchar(255),
+    address       varchar(255),
+    created_at    datetime,
+    updated_at    datetime,
+    primary key (id),
+    constraint place_slug_ak unique (slug)
 );
 
-create table PLACE_CLIENT_APPLICATION
+create table place_client_application
 (
-    PLACE_ID  integer references PLACE (ID),
-    CLIENT_ID integer references CLIENT_APPLICATION (ID),
-    primary key (PLACE_ID, CLIENT_ID)
+    place_id  integer references place (id),
+    client_id integer references client_application (id),
+    primary key (place_id, client_id)
 )
