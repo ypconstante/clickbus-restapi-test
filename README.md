@@ -2,6 +2,32 @@
 
 [![CircleCI](https://circleci.com/gh/ypconstante/clickbus-restapi-test.svg?style=svg)](https://circleci.com/gh/ypconstante/clickbus-restapi-test) [![codecov](https://codecov.io/gh/ypconstante/clickbus-restapi-test/branch/master/graph/badge.svg)](https://codecov.io/gh/ypconstante/clickbus-restapi-test)
 
+## Desenvolvimento
+
+Para iniciar a aplicação com um banco em memória, execute o comando:
+
+```sh
+./mvnw spring-boot:run -Dspring.profiles.active=development
+```
+
+
+## Produção
+
+Crie um banco MySQL e execute o script de criação de tabelas em [src/main/resources/schema.sql](src/main/resources/schema.sql).
+
+Para iniciar a aplicação execute o comando:
+
+```
+./mvnw spring-boot:run -Ddb.url={url jdbc do banco} -Ddb.user={usuario} -Ddb.password={senha}
+```
+
+
+## Swagger
+
+Após iniciar a aplicação, a documentação dos endpoints fica disponível no endereço <http://localhost:8080/swagger-ui.html>
+
+---
+
 ## Lets Code, but first...
 * Faça um Fork desse projeto (Não clone ele, por favor)
 * Ao terminar, abra um PR para que possamos avaliar e nos envie (***backend-devs@clickbus.com***) ;)
