@@ -1,0 +1,9 @@
+logging.level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.springframework.test.context.support.AbstractContextLoader: WARN
+    org.springframework.test.context.support.AnnotationConfigContextLoaderUtils: WARN
+
+spring:
+    jpa:
+        properties.hibernate.format_sql: true

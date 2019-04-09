@@ -1,0 +1,5 @@
+spring:
+    datasource:
+        url: ${db.url:jdbc:h2:mem:testdb}
+        username: ${db.user:sa}
+        password: ${db.password:}
